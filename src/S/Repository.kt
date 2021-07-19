@@ -9,7 +9,7 @@ import java.io.File
 *  Here login method and error handling two things could result in change.
 *
 * >>Solution: Create separate class for error handling/logging
-* */
+*
 class Repository(private val auth: MyAuth) {
     suspend fun loginUser(email: String, password: String) {
         try {
@@ -19,6 +19,17 @@ class Repository(private val auth: MyAuth) {
             file.appendText(
                 text = e.message.toString()
             )
+        }
+    }
+}
+ */
+
+class Repository(private val auth: MyAuth, private val fileLogger: FileLogger) {
+    suspend fun loginUser(email: String, password: String) {
+        try {
+            auth.signInWithEmailAndPassword(email, password)
+        } catch(e:Exception) {
+            fileLogger.logErrorInFile(e.message.toString())
         }
     }
 }
