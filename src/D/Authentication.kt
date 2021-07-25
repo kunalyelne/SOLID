@@ -15,7 +15,8 @@ import S.MyAuth
 *
 * >>Loosely Coupled
 *
-*
+*>>Another good example of DI could have been Kitchen and Lamp Buttons here if we depend on concretion then
+*  there would have been more issues...again to resolve this comply with DI principle
 
 class Authentication(private val repository: Repository) {
     suspend fun authenticate() {
